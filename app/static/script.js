@@ -39,7 +39,7 @@ $(document).ready(function() {
 		if (!(entrada % 1 == 0)) {
 			sweetAlert("Oops...", "Solo se permiten numeros enteros NO decimales...", "error");
 			return false
-		} 
+		}
 
 
 
@@ -53,7 +53,8 @@ $(document).ready(function() {
 
 	}
 
-	boton.click(function(evt) {
+
+	$("#form").submit(function(event) {
 		if (validarEntrada(entrada.val())) {
 
 			$.ajax({
@@ -64,14 +65,16 @@ $(document).ready(function() {
 					}
 				})
 				.done(function(msg) {
-					if(msg.success){
+					if (msg.success) {
 						swal("Buen Trabajo!", "El Numero ingresado es PRIMO CIRCULAR...", "success")
-					}else{
+					} else {
 						swal("Oops...", "El numero ingresado NO ES PRIMO CIRCULAR", "warning")
 					}
 
 				});
-
+				event.preventDefault();
+		}else{
+			event.preventDefault();
 		}
 	});
 
